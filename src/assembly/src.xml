@@ -1,0 +1,36 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+
+    <id>distribution</id>
+
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <!-- Content for the zip -->
+    <files>
+        <file>
+            <source>src/assembly/start.cmd</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+        <file>
+            <source>src/assembly/start.sh</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+        <file>
+            <source>src/main/resources/logback.xml</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+        <file>
+            <source>src/main/resources/route-sample.properties</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+        <file>
+            <source>target/${project.artifactId}-${project.version}-standalone.jar</source>
+            <outputDirectory>/</outputDirectory>
+            <destName>${project.artifactId}-standalone.jar</destName>
+        </file>
+    </files>
+
+</assembly>

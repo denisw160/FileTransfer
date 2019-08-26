@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Use this configuration to setup the logging. -->
+    <!-- By default, vert.x used JUL for logging. To activate the logback-logging
+         use the VM Opt -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory -->
+
+    <!-- Log to console -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5level [%thread] %logger{36} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <!-- Log to file -->
+    <appender name="FILEOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>filetransfer.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5level [%thread] %logger{36} - %msg%n</Pattern>
+        </encoder>
+
+        <!-- rollover daily -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>filetransfer.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>14</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Configure Log-Levels -->
+    <root level="info">
+        <appender-ref ref="FILEOUT"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <!-- Additional log-levels -->
+    <logger name="de.netpage.filetransfer" level="debug"/>
+
+</configuration>
